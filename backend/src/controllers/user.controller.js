@@ -3,6 +3,26 @@ import httpStatus from 'http-status';
 import bcrypt, { hash } from 'bcrypt';
 import crypto from 'crypto';
 
+//register
+const register = async (req, res) => {
+    const { name, username, password } = req.body;
+    try {
+        const existingUser = await User.findOne({ username });
+        if (existingUser) {
+            return res.status(httpStatus.FOUND).json({ message: "User Aleardy Exists" })
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User({
+            name: name,
+            username: username,
+            password: hashedPassword
+        });
+        await newUser.save();
+        res.status(httpStatus.CREATED).json({ message: "User Registered Successfully" })
+    } catch (e) {
+        res.json({ message: `Something went wrong ${e}` });
+    }
+}
 //login
 const login = async (req, res) => {
     const { username, password } = req.body;
@@ -28,26 +48,6 @@ const login = async (req, res) => {
         }
     } catch (e) {
         return res.status(500).json({ message: `Something went wrong ${e}` })
-    }
-}
-//register
-const register = async (req, res) => {
-    const { name, username, password } = req.body;
-    try {
-        const existingUser = await User.findOne({ username });
-        if (existingUser) {
-            return res.status(httpStatus.FOUND).json({ message: "User Aleardy Exists" })
-        }
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({
-            name: name,
-            username: username,
-            password: hashedPassword
-        });
-        await newUser.save();
-        res.status(httpStatus.CREATED).json({ message: "User Registerd" })
-    } catch (e) {
-        res.json({ message: `Something went wrong ${e}` });
     }
 }
 export { login, register };
