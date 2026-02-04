@@ -1,0 +1,50 @@
+.landingPage-container{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/public/assets/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+}
+.landingPage-container nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 1.2rem;
+    padding-block: 1.6rem;
+}
+.landingPage-container nav h2{
+    font-size: 2.8rem;
+    font-weight: 700;
+}
+.landingPage-container nav .navList{
+    display: flex;
+    gap: 1.9rem;
+    cursor: pointer;
+}
+.landingMain-container{
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 3rem;
+    height: 80vh;
+    align-items: center;
+}
+.landingMain-container > div:nth-child(1){
+font-size: 1.7rem;
+}
+.landingMain-container > div:nth-child(1) div[role="button"]{
+    background-color: #417bad;
+    width: fit-content;
+    padding: 0.6rem;
+    border-radius: 15px;
+    margin-top: 1.4rem;
+}
+.landingMain-container > div:nth-child(1) div[role="button"] a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5rem;
+}
+.landingMain-container > div:nth-child(2){
+    height: 50vh;
+    width: auto;
+}
